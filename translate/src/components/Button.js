@@ -4,13 +4,19 @@ import LanguageContext from '../contexts/LanguageContext';
 
 class Button extends React.Component {
     // hooking up a context object to a class component
-    static contextType = LanguageContext; // Button.contextType = LanguageContext
+    static contextType = LanguageContext;
+    // ^ same as: Button.contextType = LanguageContext
 
     render() {
-        console.log(this.context); // now have reference to the 'english' default value from LanguageContext.js
+        /*
+            now have reference to the 'english'
+            default value from LanguageContext.js
+        */
+        // console.log(this.context);
+        const text = this.context === 'english' ? 'Submit' : '보내기';
         return (
             <button className="ui button primary">
-                Submit
+                {text}
             </button>
         )
     }
