@@ -17,7 +17,13 @@ class App extends React.Component {
                     <i className="flag us" onClick={() => this.onLanguageChange('english')}/>
                     <i className="flag kr" onClick={() => this.onLanguageChange('korean')}/>
                 </div>
-                {/* the value prop with context is a reserved keyword */}
+                {/*
+                    the value prop with context is a reserved keyword.
+                    whatever the value of "value" prop is, will be passed
+                    to the context object. We're not limited to strings.
+                    DON'T have to make use of the state system for the 
+                    value property
+                */}
                 <LanguageContext.Provider value={this.state.language}>
                     <UserCreate />
                 </LanguageContext.Provider>
