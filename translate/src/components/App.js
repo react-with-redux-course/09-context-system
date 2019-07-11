@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCreate from './UserCreate';
+// importing context object so we can change the state / language of our app
 import LanguageContext from '../contexts/LanguageContext';
 import ColorContext from '../contexts/ColorContext';
 
@@ -25,7 +26,7 @@ class App extends React.Component {
                     DON'T have to make use of the state system for the 
                     value property
                 */}
-                <LanguageContext.Provider value={this.state.language}>
+                <LanguageContext.Provider value={this.state.language}> {/*this.state.language will be put into context object*/}
                     <ColorContext.Provider value="red">
                         <UserCreate />
                     </ColorContext.Provider>

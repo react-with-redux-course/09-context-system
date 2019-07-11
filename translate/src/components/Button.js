@@ -10,7 +10,10 @@ class Button extends React.Component {
     static contextType = LanguageContext;
     // ^ same as: Button.contextType = LanguageContext
 
-  */
+    /* 
+      even when we use the Provider to feed data into the context object,
+      we can still use the contextType to access/pull out data from the context object 
+    */
 
   render() {
     /*
@@ -35,8 +38,11 @@ class Button extends React.Component {
         <button className={`ui button ${color}`}>
           {/* text is assigned the default value from context object (LanguageContext) */}
           {/* {text} */}
+
+          {/* pulling out data from context object using the consumer method */}
           <LanguageContext.Consumer>
-            {value => (value === "english" ? "Submit" : "보내기")}
+            {/* function below will be invoked by Consumer and value is from Provider (in App.js) */}
+            {(value) => value === "english" ? "Submit" : "보내기"}
           </LanguageContext.Consumer>
         </button>
     }
@@ -46,3 +52,40 @@ class Button extends React.Component {
 }
 
 export default Button;
+
+/*
+
+  if we don't want to have too much login in our function of the 
+  Consumer component, we can create a helper function above the render
+  method like so:
+
+  renderSubmit(value) {
+    return value === 'english' ? 'Submit' : '보내기'
+  }
+
+  then, the function in Consumer will look like:
+  {(value) => this.renderSubmit(value)}
+
+*/
+
+/*
+
+  if we want to add another context object to colorize a button depending on a className
+
+  above render method:
+
+  colorSubmit(color) {
+    <button className={`ui button ${color}`}>
+      <LanguageContext.Consumer>
+        {value => this.renderSubmit(value)}
+      </LanguageContext.Consumer>
+    </button>
+  }
+
+  then, inside our return:
+
+  <ColorContext.Consumer>
+    {color => this.colorSubmit(color)}
+  </ColorContext.Consumer>
+
+*/
